@@ -228,7 +228,7 @@ class OpenSearchClient:
             })
         
         try:
-            response = self.client.bulk(operations=actions)
+            response = self.client.bulk(body=actions)
             success_count = sum(1 for item in response['items'] if 'error' not in item.get('index', {}))
             error_count = len(response['items']) - success_count
             return {"success": success_count, "errors": error_count}
